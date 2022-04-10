@@ -1,7 +1,5 @@
 package hot100;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Test;
 
 import java.util.ArrayList;
