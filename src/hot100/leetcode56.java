@@ -19,11 +19,11 @@ public class leetcode56 {
         if (intervals.length==1){
             return intervals;
         }
-        List<int[]>list=new ArrayList<>();
         Arrays.sort(intervals,(int[]o1,int[]o2)->{
             return o1[0]-o2[0];
         });
 
+        List<int[]>list=new ArrayList<>();
         for (int i=0;i<intervals.length;++i){
             int l=intervals[i][0];
             int r=intervals[i][1];
