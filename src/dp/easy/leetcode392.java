@@ -38,14 +38,51 @@ public class leetcode392 {
             }
             j++;
         }
-        return i==sArrays.length?true:false;
+        return i==sArrays.length;
     }
 
+    /**
+     * 动态规划：
+     *     令 f[i][j] 表示字符串 t 中从位置 i 开始往后字符 j 第一次出现的位置
+     *     在进行状态转移时，如果 t 中位置 i 的字符就是 j，那么 f[i][j]=i,否则 j出现在位置 i+1开始往后,
+     *     即 f[i][j]=f[i+1][j]，因此我们要倒过来进行动态规划，从后往前枚举 i
+     *                 i   t[i]=j
+     *     f[i][j]==
+     *                f[i+1][j] t[i]≠j
+     *
+     *  该解法中对 t 的处理与 s 无关，且预处理完成后，可以利用预处理数组的信息，线性地算出任意一个字符串 s 是否为 t的子串
+     */
+    public boolean isSubsequence2(String s, String t){
+        int n = s.length(), m = t.length();
+
+        //f[i][j] 表示字符串 t 中从位置 i 开始往后字符 j 第一次出现的位置
+        int[][] f = new int[m + 1][26];
+        for (int i = 0; i < 26; i++) {
+            f[m][i] = m;
+        }
+
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = 0; j < 26; j++) {
+                if (t.charAt(i) == j + 'a')
+                    f[i][j] = i;
+                else
+                    f[i][j] = f[i + 1][j];
+            }
+        }
+        int add = 0;
+        for (int i = 0; i < n; i++) {
+            if (f[add][s.charAt(i) - 'a'] == m) {
+                return false;
+            }
+            add = f[add][s.charAt(i) - 'a'] + 1;
+        }
+        return true;
+    }
     @Test
     public void test(){
-        String s="axc";
+        String s="ac";
         String t="ahbgdc";
-        boolean subsequence = isSubsequence(s, t);
+        boolean subsequence = isSubsequence2(s, t);
         System.out.println(subsequence);
     }
 }
