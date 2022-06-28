@@ -2,7 +2,9 @@ package hot100;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ClassName leetcode560
@@ -35,5 +37,19 @@ public class leetcode560 {
         int k = 2;
         int i = subarraySum(nums, k);
         System.out.println(i);
+    }
+}
+
+abstract class A{
+    int a=10;
+    A(){
+      a=12;
+    };
+}
+
+class B extends A{
+    public static void main(String[] args) {
+       // ArrayList<Integer> arrayList=new ArrayList<>(50);
+       
     }
 }

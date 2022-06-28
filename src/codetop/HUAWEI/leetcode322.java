@@ -27,10 +27,10 @@ public class leetcode322 {
         //dp[i][j]:考虑前i个硬币，可以凑成总金额j所需的 最少的硬币个数
         int[][] dp = new int[n + 1][amount + 1];
         for (int i = 0; i < amount + 1; ++i) {
-            dp[0][i] = amount+1;//amount+1表示无解
+            dp[0][i] = amount + 1;//amount+1表示无解
         }
-        for (int i=1;i<n+1;++i){
-            dp[i][0]=0;
+        for (int i = 1; i < n + 1; ++i) {
+            dp[i][0] = 0;
         }
 
         for (int i = 1; i <= n; ++i) {
@@ -48,17 +48,17 @@ public class leetcode322 {
 //            System.out.println(Arrays.toString(f));
 //        }
 
-        int lastElement=dp[n][amount];
-        return lastElement== amount+1 ? -1 : lastElement;
+        int lastElement = dp[n][amount];
+        return lastElement == amount + 1 ? -1 : lastElement;
 
     }
 
     //优化成一维数组
-    public int coinChange(int[] coins, int amount){
+    public int coinChange(int[] coins, int amount) {
         // dp[i]:代表需要面值为i的最小硬币数
         // dp[i]=min(dp[i],dp[i-coin]+1)
         int[] dp = new int[amount + 1];
-        Arrays.fill(dp,amount+1);
+        Arrays.fill(dp, amount + 1);
         Arrays.sort(coins);
         dp[0] = 0;
         for (int i = 1; i <= amount; ++i) {
@@ -76,7 +76,33 @@ public class leetcode322 {
     public void test() {
         int[] coins = {2};
         int amount = 3;
-        int ans = coinChange(coins, amount);
+        int ans = coinChange2(coins, amount);
         System.out.println(ans);//3
     }
+
+    public int coinChange2(int[] coins, int amount) {
+        //dp[i][j]:考虑前i种硬币，凑成总金额的j的最少硬币个数
+        int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
+
+        for (int i = 0; i < amount + 1; ++i) {
+            dp[0][i] = amount + 1;//amount+1表示无解
+        }
+        for (int i = 1; i < n + 1; ++i) {
+            dp[i][0] = 0;
+        }
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= amount; ++j) {
+                if (coins[i - 1] > j) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - coins[i - 1]] + 1);
+                }
+            }
+        }
+        int lastElement = dp[n][amount];
+        return lastElement == amount + 1 ? -1 : lastElement;
+    }
+
+
 }
