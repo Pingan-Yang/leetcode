@@ -43,13 +43,11 @@ public class leetcode03 {
                 //每次从下一左指针开始需要删除上一个开始的左边界的值
                 set.remove(array[left-1]);
             }
-
-            //每次都从左指针向右找，直到找到一个相同的，或者到末尾
+            //每次都从左指针向后找，直到找到一个相同的，或者到末尾
             while(right+1<n&&!set.contains(array[right+1])){
                 set.add(array[right+1]);
                 right++;
             }
-
             ans=Math.max(ans,right-left+1);
 
         }
