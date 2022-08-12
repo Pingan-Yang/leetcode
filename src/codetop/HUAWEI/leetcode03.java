@@ -55,9 +55,41 @@ public class leetcode03 {
         return ans;
     }
 
+
+    public static void main(String[] args) {
+        test11();
+    }
     @Test
     public void test(){
         String s="abcabcbb";
         System.out.println(lengthOfLongestSubstring(s));
     }
+    public static  int test11(){
+        int a=1;
+        try {
+            a=2;
+            return a;
+        }catch (Exception e){
+            a=3;
+            return a;
+        }finally {
+            a=4;
+            System.out.println("1211"+a);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

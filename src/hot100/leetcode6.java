@@ -29,12 +29,10 @@ public class leetcode6 {
             }
             i += flag;
         }
-
             StringBuilder res=new StringBuilder();
             for (StringBuilder row:rows){
                 res.append(row);
             }
             return res.toString();
-
     }
 }
