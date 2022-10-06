@@ -27,16 +27,21 @@ import java.util.StringTokenizer;
 public class model1 {
     public static void main(String[] args) throws IOException {
         Read read = new Read();
-        int n = read.nextInt();//n件物品
         int v = read.nextInt();//背包容量V
-        int[] weight = new int[n];//每个物品的重量
-        int[] value = new int[n];//每个物品的价值
-        for (int i = 0; i < n; ++i) {
-            weight[i] = read.nextInt();
+
+        int n1 = read.nextInt();//n件物品
+        int[] value = new int[n1];//每个物品的价值
+        for (int i = 0; i < n1; ++i) {
             value[i] = read.nextInt();
         }
-        System.out.println("-----------------------------------------------------------");
-        int maxvalue = method1(n, v, weight, value);
+
+        int n2=read.nextInt();
+        int[] weight = new int[n2];//每个物品的重量
+        for (int i = 0; i < n2; i++) {
+            weight[i]=read.nextInt();
+        }
+        //System.out.println("-----------------------------------------------------------");
+        int maxvalue = method1(n1, v, weight, value);
         System.out.println("maxValue:" + maxvalue);
 
     }
